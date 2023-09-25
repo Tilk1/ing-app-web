@@ -1,13 +1,14 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany} from '@loopback/repository';
+import {Capturas} from './capturas.model';
 
 @model()
 export class Sitios extends Entity {
   @property({
-    type: 'number',
+    type: 'string',
     id: true,
     generated: true,
   })
-  Id?: number;
+  Id?: string;
 
   @property({
     type: 'string',
@@ -20,7 +21,33 @@ export class Sitios extends Entity {
     required: true,
   })
   URL: string;
+  
+  @property({
+    type: 'number',
+    required: true,
+  })
+  profundidad_hojas: number;
 
+  @property({
+    type: 'string',
+    required: true,
+  })
+  document_extractor: string;
+
+  @property({
+    type: 'number',
+    required: true,
+  })
+  max_retrys: number;
+
+  @property({
+    type: 'number',
+    required: true,
+  })
+  timeout: number;
+
+  @hasMany(() => Capturas)
+  capturas: Capturas[];
 
   constructor(data?: Partial<Sitios>) {
     super(data);

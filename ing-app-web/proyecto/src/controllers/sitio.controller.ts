@@ -105,7 +105,7 @@ export class SitioController {
     },
   })
   async findById(
-    @param.path.number('id') id: number,
+    @param.path.string('id') id: string,
     @param.filter(Sitios, {exclude: 'where'}) filter?: FilterExcludingWhere<Sitios>
   ): Promise<Sitios> {
     return this.sitiosRepository.findById(id, filter);
@@ -116,7 +116,7 @@ export class SitioController {
     description: 'Sitios PATCH success',
   })
   async updateById(
-    @param.path.number('id') id: number,
+    @param.path.string('id') id: string,
     @requestBody({
       content: {
         'application/json': {
@@ -134,7 +134,7 @@ export class SitioController {
     description: 'Sitios PUT success',
   })
   async replaceById(
-    @param.path.number('id') id: number,
+    @param.path.string('id') id: string,
     @requestBody() sitios: Sitios,
   ): Promise<void> {
     await this.sitiosRepository.replaceById(id, sitios);
@@ -144,7 +144,7 @@ export class SitioController {
   @response(204, {
     description: 'Sitios DELETE success',
   })
-  async deleteById(@param.path.number('id') id: number): Promise<void> {
+  async deleteById(@param.path.string('id') id: string): Promise<void> {
     await this.sitiosRepository.deleteById(id);
   }
 }
