@@ -1,11 +1,12 @@
 import {inject, lifeCycleObserver, LifeCycleObserver} from '@loopback/core';
 import {juggler} from '@loopback/repository';
+require('dotenv').config();
 
 const config = {
   name: 'atlas',
   connector: 'mongodb',
-  port:27017,
-  url: 'mongodb+srv://santiagolizondo:lala123@cluster0.p4kn4da.mongodb.net/test?retryWrites=true&w=majority',
+  port: 27017,
+  url: `mongodb+srv://santiagolizondo:lala123@cluster0.p4kn4da.mongodb.net/test?retryWrites=true&w=majority`,
   useNewUrlParser: true
 };
 
