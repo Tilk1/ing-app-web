@@ -17,134 +17,134 @@ import {
   requestBody,
   response,
 } from '@loopback/rest';
-import {Sitio} from '../models';
-import {SitioRepository} from '../repositories';
+import {Sitios} from '../models';
+import {SitiosRepository} from '../repositories';
 
 export class SitioController {
   constructor(
-    @repository(SitioRepository)
-    public sitioRepository : SitioRepository,
+    @repository(SitiosRepository)
+    public sitiosRepository : SitiosRepository,
   ) {}
 
   @post('/sitios')
   @response(200, {
-    description: 'Sitio model instance',
-    content: {'application/json': {schema: getModelSchemaRef(Sitio)}},
+    description: 'Sitios model instance',
+    content: {'application/json': {schema: getModelSchemaRef(Sitios)}},
   })
   async create(
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(Sitio, {
-            title: 'NewSitio',
-            
+          schema: getModelSchemaRef(Sitios, {
+            title: 'NewSitios',
+            exclude: ['Id'],
           }),
         },
       },
     })
-    sitio: Sitio,
-  ): Promise<Sitio> {
-    return this.sitioRepository.create(sitio);
+    sitios: Omit<Sitios, 'Id'>,
+  ): Promise<Sitios> {
+    return this.sitiosRepository.create(sitios);
   }
 
   @get('/sitios/count')
   @response(200, {
-    description: 'Sitio model count',
+    description: 'Sitios model count',
     content: {'application/json': {schema: CountSchema}},
   })
   async count(
-    @param.where(Sitio) where?: Where<Sitio>,
+    @param.where(Sitios) where?: Where<Sitios>,
   ): Promise<Count> {
-    return this.sitioRepository.count(where);
+    return this.sitiosRepository.count(where);
   }
 
   @get('/sitios')
   @response(200, {
-    description: 'Array of Sitio model instances',
+    description: 'Array of Sitios model instances',
     content: {
       'application/json': {
         schema: {
           type: 'array',
-          items: getModelSchemaRef(Sitio, {includeRelations: true}),
+          items: getModelSchemaRef(Sitios, {includeRelations: true}),
         },
       },
     },
   })
   async find(
-    @param.filter(Sitio) filter?: Filter<Sitio>,
-  ): Promise<Sitio[]> {
-    return this.sitioRepository.find(filter);
+    @param.filter(Sitios) filter?: Filter<Sitios>,
+  ): Promise<Sitios[]> {
+    return this.sitiosRepository.find(filter);
   }
 
   @patch('/sitios')
   @response(200, {
-    description: 'Sitio PATCH success count',
+    description: 'Sitios PATCH success count',
     content: {'application/json': {schema: CountSchema}},
   })
   async updateAll(
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(Sitio, {partial: true}),
+          schema: getModelSchemaRef(Sitios, {partial: true}),
         },
       },
     })
-    sitio: Sitio,
-    @param.where(Sitio) where?: Where<Sitio>,
+    sitios: Sitios,
+    @param.where(Sitios) where?: Where<Sitios>,
   ): Promise<Count> {
-    return this.sitioRepository.updateAll(sitio, where);
+    return this.sitiosRepository.updateAll(sitios, where);
   }
 
   @get('/sitios/{id}')
   @response(200, {
-    description: 'Sitio model instance',
+    description: 'Sitios model instance',
     content: {
       'application/json': {
-        schema: getModelSchemaRef(Sitio, {includeRelations: true}),
+        schema: getModelSchemaRef(Sitios, {includeRelations: true}),
       },
     },
   })
   async findById(
     @param.path.number('id') id: number,
-    @param.filter(Sitio, {exclude: 'where'}) filter?: FilterExcludingWhere<Sitio>
-  ): Promise<Sitio> {
-    return this.sitioRepository.findById(id, filter);
+    @param.filter(Sitios, {exclude: 'where'}) filter?: FilterExcludingWhere<Sitios>
+  ): Promise<Sitios> {
+    return this.sitiosRepository.findById(id, filter);
   }
 
   @patch('/sitios/{id}')
   @response(204, {
-    description: 'Sitio PATCH success',
+    description: 'Sitios PATCH success',
   })
   async updateById(
     @param.path.number('id') id: number,
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(Sitio, {partial: true}),
+          schema: getModelSchemaRef(Sitios, {partial: true}),
         },
       },
     })
-    sitio: Sitio,
+    sitios: Sitios,
   ): Promise<void> {
-    await this.sitioRepository.updateById(id, sitio);
+    await this.sitiosRepository.updateById(id, sitios);
   }
 
   @put('/sitios/{id}')
   @response(204, {
-    description: 'Sitio PUT success',
+    description: 'Sitios PUT success',
   })
   async replaceById(
     @param.path.number('id') id: number,
-    @requestBody() sitio: Sitio,
+    @requestBody() sitios: Sitios,
   ): Promise<void> {
-    await this.sitioRepository.replaceById(id, sitio);
+    await this.sitiosRepository.replaceById(id, sitios);
   }
 
   @del('/sitios/{id}')
   @response(204, {
-    description: 'Sitio DELETE success',
+    description: 'Sitios DELETE success',
   })
   async deleteById(@param.path.number('id') id: number): Promise<void> {
-    await this.sitioRepository.deleteById(id);
+    await this.sitiosRepository.deleteById(id);
   }
 }

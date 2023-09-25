@@ -1,2 +1,1 @@
-export * from './corridas.repository';
-export * from './sitio.repository';
+export * from './sitios.repository';

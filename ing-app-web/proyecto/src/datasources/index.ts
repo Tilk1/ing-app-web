@@ -1,1 +1,1 @@
-export * from './source.datasource';
+export * from './atlas.datasource';

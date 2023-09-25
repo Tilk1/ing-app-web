@@ -1,2 +1,1 @@
-export * from './sitio.model';
-export * from './corridas.model';
+export * from './sitios.model';
