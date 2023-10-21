@@ -6,7 +6,7 @@ const config = {
   name: 'atlas',
   connector: 'mongodb',
   port: 27017,
-  url: `mongodb+srv://santiagolizondo:lala123@cluster0.p4kn4da.mongodb.net/test?retryWrites=true&w=majority`,
+  url: `mongodb+srv://santiagolizondo:${process.env.PASSWORD}@cluster0.p4kn4da.mongodb.net/test?retryWrites=true&w=majority`,
   useNewUrlParser: true
 };
 
